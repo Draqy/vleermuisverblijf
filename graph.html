@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lijngrafiek met tijd en temperatuur</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+         h1 {
+            font-size: 3.5em;             /* Grootte van de tekst */
+            color: #333;                  /* Kleur van de tekst */
+            text-align: center;           /* Tekst centreren */
+            font-family: Arial, sans-serif; /* Lettertype instellen */
+        }
+    </style>
+ 
+</head>
+<body>
+    <h1>Temperatuur: Maassluis</h1>
+    <canvas id="tempChart" width="50" height="20"></canvas>
+ 
+<script>
+    const tijdData = ['08:00\n01-09-24', '09:00\n01-09-24', '10:00\n01-09-24', '11:00\n01-09-24', '12:00\n01-09-24', '13:00\n01-09-24', '14:00\n01-09-24', '15:00\n01-09-24'];
+    const tempDataMSSpouwT1 = [15, 16, 18, 20, 22, 23, 24, 22];
+    const tempDataMSSpouwT2 = [14, 15, 19, 21, 23, 24, 25, 23];
+ 
+    const ctx = document.getElementById('tempChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: tijdData,
+            datasets: [
+                {
+                label: 'Temperatuur (°C) Spouw T1',
+                data: tempDataMSSpouwT1,
+                borderColor: 'rgba(255, 0, 0, 1)',
+            },
+            {
+                label: 'Temperatuur (°C) Spouw T2',
+                data: tempDataMSSpouwT2,
+                borderColor: 'rgba(0, 0, 255, 1)',
+            }
+           
+        ]
+           
+        },
+ 
+    options: {
+    scales: {
+        x: {
+            title: {
+                display: true,
+                text: 'Tijd en datum' // Titel voor de X-as
+            }
+        },
+        y: {
+            title: {
+                display: true,
+                text: 'Temperatuur (°C)' // Titel voor de Y-as
+            },
+            beginAtZero: false // Y-as begint niet op 0
+        }
+    }
+}
+ 
+    });
+   
+</script>
+ 
+</body>
+</html>
