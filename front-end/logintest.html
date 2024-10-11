@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <title>login test</title>
+</head>
+<body>
+
+    <form id="login">
+        <label for="username">username:</label>
+        <input type="text" id="username" required><br><br>
+
+        <label for="password">password:</label>
+        <input type="password" id="password" required><br><br>
+
+        <button type="submit"></button>
+    </form>
+
+    <script>
+    document.getElementById('login').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try{
+            const response = await fetch('http://localhost:8000/api/authentication',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    uname: username,
+                    passwd: password
+                })
+            });
+            const data = await response.json();
+            if (response.status == 200) {
+                console.log("OK");
+            } else if(response.status == 401){
+                console.log(data.message);
+            } else if(response.status == 500){
+                console.log(data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+    </script> 
+</body>
+</html>
