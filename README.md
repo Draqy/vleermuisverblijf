@@ -39,21 +39,28 @@ csvData = "date,description,temp1,temp2,temp3,battery,messages,sw,gw
 
 csv.from(csv: csvData, mode: "raw")
     |> map(fn: (r) => ({
+        _measurement: string(v: r.description),
         _time: time(v: "${r.date}Z"),
         Temp1: float(v: r.temp1),
         Temp2: float(v: r.temp2),
         Temp3: float(v: r.temp3),
         Battery: int(v: r.battery),
         Messages: int(v: r.messages),
-        SW: int(v: r.sw),
-        GW: int(v: r.gw)
+        Singnal: int(v: r.sw),
+        GateWays: int(v: r.gw)
     }))
-    |> set(key: "_measurement", value: "example-measurement") // Setting the measurement name
     |> group(columns: ["_measurement"]) // Ensuring _measurement is part of the group key
     |> influxdb.wideTo(bucket: "bat_data")
+
 
 ```
 
 voor als de tijd waardes nog niet zijn omgezet
 
         "${strings.replace(i: 1, t: " ", u: "T", v: r.UTC_time)}Z"
+
+### uploaden van test data:
+
+        docker cp .\test_data.csv {container_id}:/
+        docker exec -it 65c179a7cbed /bin/bash
+        influx write --bucket bat_data --file /test_data.csv

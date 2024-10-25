@@ -49,32 +49,6 @@ services:
       - "influx-data:/var/lib/influxdb"
       - "./timeseries/config:/etc/influxdb2"
 
-  # web:
-  #   build: .
-  #   ports:
-  #     - "8080:8080"
-  #   depends_on:
-  #     - db
-  #   environment:
-  #     - DB_HOST=db
-  #     - DB_USER=root
-  #     - DB_PASSWORD=example
-  #     - DB_NAME=test_db
-  #   volumes:
-  #     - .:/usr/src/app
-  #   networks:
-  #     - mynetwork
-
-  # db:
-  #   image: mysql:5.7
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: example
-  #     MYSQL_DATABASE: test_db
-  #   volumes:
-  #     - db-data:/var/lib/mysql
-  #   networks:
-  #     - mynetwork
-
 volumes:
   db-data:
   influx-data:
