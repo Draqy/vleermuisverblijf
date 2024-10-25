@@ -61,6 +61,6 @@ voor als de tijd waardes nog niet zijn omgezet
 
 ### uploaden van test data:
 
-        docker cp .\test_data.csv {container_id}:/
-        docker exec -it 65c179a7cbed /bin/bash
+        docker cp .\test_data.csv container_id:/
+        docker exec -it container_id /bin/bash
         influx write --bucket bat_data --file /test_data.csv
