@@ -62,5 +62,23 @@ voor als de tijd waardes nog niet zijn omgezet
 ### uploaden van test data:
 
         docker cp .\test_data.csv container_id:/
-        docker exec -it container_id /bin/bash
-        influx write --bucket bat_data --file /test_data.csv
+        docker exec -it container_id influx write --bucket bat_data --file /test_data.csv
+
+### link met grafana
+
+1. ga in influx naar `Load Data` > `API Tokens`
+2. klik `GENERATE API TOKEN` > `all access API token`
+3. geef de token een leuke naam ofzo
+4. kopieer token
+5. de URL zou er ongeveer zo uit moeten zien `http://localhost:8086/orgs/fd73fa5552157f6c/load-data/tokens`
+    kopieer het deel achter `orgs` hier is dat dus `fd73fa5552157f6c`
+6. in grafana ga naar `connection` > `Data sources` 
+7. `Query language` = Flux
+8. `URL` = `http://vleermuisverblijf-timeseries-1:8086`
+9. alle `auth` opties uit
+10. `Organization` = `fd73fa5552157f6c` (wat uit de url was gekopieerd)
+11. `Token` = de gekopieerde token
+12. klik `Save & test`
+
+als alles goed is gegaan zou grafana een popup geven met `datasource is working. 3 buckets found`
+als grafana dit niet aangeeft is er iets fout
