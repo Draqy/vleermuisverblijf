@@ -64,6 +64,12 @@ voor als de tijd waardes nog niet zijn omgezet
         docker cp .\test_data.csv container_id:/
         docker exec -it container_id influx write --bucket bat_data --file /test_data.csv
 
+### test of data in database staat
+
+        docker exec -it container_id influx v1 shell
+        use "bat_data"
+        SELECT * FROM "MSSL-LA66N711768"
+
 ### link met grafana
 
 1. ga in influx naar `Load Data` > `API Tokens`
