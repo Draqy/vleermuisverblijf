@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>csv file uploading</title>
+</head>
+<body>
+
+    <form id="uploadForm">
+        <input type="file" id="uploadfile" accept=".csv" name="filename" required>
+        <input type="submit">
+    </form>
+
+    <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+        
+        const files = document.getElementById('uploadfile');
+
+        const formData = new FormData();
+        formData.append("file", files.files[0]);
+
+        try{
+            const response = await fetch('http://localhost:8000/api/upload',{
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            if(response.ok){
+                console.log('ok');
+            }
+            else{
+                console.log('not ok')
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        
+    });
+    </script> 
+</body>
+</html>

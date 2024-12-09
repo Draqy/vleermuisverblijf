@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+  <title>upload</title>
+  <style>
+    div {
+      font-family: "Teko", sans-serif;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 0.4fr 2.2fr 0.4fr;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        ". . ."
+        ". panel ."
+        ". . .";
+    }
+
+    .panel {
+      grid-area: panel;
+      background-color: #F5F5F5;
+    }
+
+    .panelHead {
+      background-color: #292929;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      color: rgb(245, 245, 245);
+      font-size: 4em;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .panelBody {
+      position: absolute;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button {
+      background: #0450d5;
+      color: white;
+      line-height: 1.2;
+      padding: 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    html,
+    body,
+    .container {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="panel">
+      <div class="panelHead">
+        Upload CSV  
+      </div>
+      <div class="panelBody">
+        <form method="post" enctype="multipart/form-data" action="http://136.144.154.20:8080">
+          <input type="file" id="file" name="file" accept=".csv" style="opacity: 0; position: absolute; z-index: -1;">
+          <label for="file" class="button">upload</label>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
