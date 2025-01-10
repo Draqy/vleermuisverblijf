@@ -19,6 +19,7 @@ services:
       - 8080:8080
     volumes:
       - 'grafana_storage:/var/lib/grafana'
+      - ./csvuploads:/usr/src/csvuploads
 
   grafana:
     image: grafana/grafana
