@@ -20,6 +20,8 @@ services:
     volumes:
       - 'grafana_storage:/var/lib/grafana'
       - ./csvuploads:/csvuploads
+    networks:
+      - main
 
   grafana:
     image: grafana/grafana
