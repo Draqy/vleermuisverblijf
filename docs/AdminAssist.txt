@@ -1,0 +1,15 @@
+# Credentials
+## Grafana
+Port:8080
+User:admin
+Pass:admin
+# Inno
+Port:3000
+User:admin
+Pass:jFc6&>2^i>5>
+
+How to add a new location
+
+InnoDB
+
+Setup Grafana visualization

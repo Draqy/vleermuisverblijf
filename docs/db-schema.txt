@@ -1,0 +1,37 @@
+date;description;temperature;rh;battery;messages;sw;gw
+01-10-2024 - 00:17:42;MS-A-Buiten-HT (NNW) (LA66N712214);13.7;92;3.64;10628;7;40
+
+measurement: LA66N712214
+tags:
+ - Type:            luchtvochtigheid
+ - Location:        MS
+ - Section:         A
+ - Place:           Buiten
+ - Orientation:     NNW
+fields: 
+ - Temp_1:              13.7
+ - RH:                  92
+ - Battery:             3.64
+ - Messages:            10628
+ - Signal:              7
+ - Gateways:            40
+
+
+date;description;temp1;temp2;temp3;battery;messages;sw;gw
+01-10-2024 - 00:03:46; MS-A-Spouw-T1 (NNW) (LA66N712943); 14.1; 14; 14; 3; 11893; 7; 38
+
+measurement: LA66N712943
+tags:
+ - Type:            temperatuurCluster
+ - Location:        MS
+ - Section:         A
+ - Place:           Spouw
+ - Orientation:     NNW
+fields: 
+ - Temp_1:              14.1
+ - Temp_2:              14
+ - Temp_3:              14
+ - Battery:             3
+ - Messages:            11893
+ - Signal:              7
+ - Gateways:            38

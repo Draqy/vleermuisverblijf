@@ -92,6 +92,20 @@ voor als de tijd waardes nog niet zijn omgezet
 als alles goed is gegaan zou grafana een popup geven met `datasource is working. 3 buckets found`
 als grafana dit niet aangeeft is er iets fout
 
+### link met telegraf
+cd downloads\project56\telegraf\vleermuis
+
+1. Comment het telegraf gedeelte in docker-compose.yml
+2. Run het command in de folder
+docker compose up --build
+3. Ga naar localhost:8086 en log in met de waardes in docker-compose.yml onder timeseries
+4. Ga naar 'Load Data' -> 'Telegraf'. Maak daar een nieuwe connectie en kopieer de toen
+5. Zet de token in telegraf.conf bij 'token' onder [[outputs.influxdb_v2]]
+6. Zorg dat het telegraf gedeelte niet meer gecomment is in docker-compose.yml
+7. Delete de timeseries folder
+8. Run het command in de folder
+docker compose up --build
+
 # Server installatie
 
 Om op de server te komen doe eerst:
