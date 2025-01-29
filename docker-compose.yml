@@ -1,15 +1,6 @@
 version: '3.8'
 
 services:
-  front-end:
-    image: nginx
-    volumes:
-      - "./front-end:/usr/share/nginx/html:ro"
-    ports:
-      - "80:80"
-    networks:
-      - main
-
   back-end:
     build:
       context: ./back-end
@@ -17,30 +8,18 @@ services:
       NODE_ENV: production
     ports:
       - 8080:8080
-
-  database:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: test_db
     volumes:
-      - db-data:/var/lib/mysql
+      - "./csvuploads:/usr/src/csvuploads"
     networks:
       - main
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - 3000:3000
-    networks:
-      - main
 
   timeseries:
     image: influxdb:2
     ports:
       - 8086:8086
     environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup 
+      - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
       - DOCKER_INFLUXDB_INIT_PASSWORD=jFc6&>2^i>5>
       - DOCKER_INFLUXDB_INIT_ORG=bats_birds
@@ -48,6 +27,16 @@ services:
     volumes:
       - "influx-data:/var/lib/influxdb"
       - "./timeseries/config:/etc/influxdb2"
+    networks:
+      - main
+
+  telegraf:
+    image: telegraf:1.19
+    volumes:
+      - "./csvuploads:/csvuploads"
+      - "./telegraf-configs/telegraf.conf:/etc/telegraf/telegraf.conf:rw"
+    depends_on:
+      - timeseries
     networks:
       - main
 
