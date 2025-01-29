@@ -1,6 +1,9 @@
 # Vleermuis verblijven monitoren dashboard
 dit dashboard gebruikt influxDB en grafana voor data visualizatie
 
+
+# locale installatie
+
 ## Instructies
 **! belangrijk !** verwijder eerst de timeseries folder voor dat je iets gaat doen
 
@@ -89,9 +92,6 @@ voor als de tijd waardes nog niet zijn omgezet
 als alles goed is gegaan zou grafana een popup geven met `datasource is working. 3 buckets found`
 als grafana dit niet aangeeft is er iets fout
 
-
-
-
 ### link met telegraf
 cd downloads\project56\telegraf\vleermuis
 
@@ -105,3 +105,44 @@ docker compose up --build
 7. Delete de timeseries folder
 8. Run het command in de folder
 docker compose up --build
+
+# Server installatie
+
+Om op de server te komen doe eerst:
+	
+	ssh root@136.144.154.20
+
+navigeer dan naar: /home/dashboard/vleermuisverblijf
+
+## utilities commands
+
+`cd` moet je kennen,
+`ls` ook (`ls -l` voor extra info)
+
+`cat [file name]` print bestand in terminal <br>
+`nano [file name]` edit bestand in terminal <br>
+ - `ctrl` + `s` save bestand
+ - `crtl` + `x` exit edit
+
+
+
+## docker commands
+
+om alle docker containers te zien doe:
+	
+	docker ps
+	
+voeg `-a` toe om ook containers te zien die exited zijn
+
+
+om in een container te komen doe:
+	
+	docker exec -it {container} ['bash', 'ash', '/bin/bash']
+	
+`exit` om weer uit de container te komen
+
+om dingen te doen met docker compose doe:
+
+	docker compose
+
+`--help` voor help
