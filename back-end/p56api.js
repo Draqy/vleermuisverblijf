@@ -19,8 +19,8 @@ const authenticatie = (req, res, next) => {
   console.log(authToken);
  
   if(!authToken || authToken != 3701) { //als env variable
-    console.log('balls');
-    return res.status(401).json({'message' : 'go fuck yourself'});
+    console.log('invalid authentication token given while uploading a file');
+    return res.status(401).json({'message' : 'invalid authentication token'});
   }
   next();
 };
